@@ -1,0 +1,1 @@
+# go-http-status-class
