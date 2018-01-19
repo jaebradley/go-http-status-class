@@ -24,7 +24,7 @@ const (
 	Unknown       StatusClass = "Unknown"
 )
 
-// IdentifyStatusClass returns a StatusClass for a given http.Response object.
+// IdentifyResponseStatusClass returns a StatusClass for a given http.Response object.
 // For a http.Response object with an unexpected StatusCode, the returned
 // StatusClass is Unknown.
 func IdentifyResponseStatusClass(r http.Response) StatusClass {
