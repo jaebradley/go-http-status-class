@@ -16,17 +16,9 @@ import (
 
 var r http.Response;
 r.StatusCode = http.StatusOK
-statusClass, err := httpstatusclass.IdentifyResponseStatusClass(r)
-
-if err != nil {
-  fmt.Printf("Unknown Status Class: %s\n", r.Status)
-}
-
+statusClass := httpstatusclass.IdentifyResponseStatusClass(r)
 fmt.Println(statusClass) // This should print "Successful"
 
-statusClass2, err2 := httpstatusclass.IdentifyStatusClass(-1)
-
-if err2 != nil {
-  log.Fatal(err) // This will print "Unexpected status code: -1"
-}
+statusClass2 := httpstatusclass.IdentifyStatusClass(-1)
+fmt.Println(statusClass) // This should print "Unknown"
 ```
