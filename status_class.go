@@ -1,7 +1,6 @@
 package httpstatusclass
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -27,26 +26,26 @@ const (
 
 // IdentifyStatusClass returns a StatusClass for a given http.Response object.
 // For a http.Response object with an unexpected StatusCode, the returned
-// error is non-nil and the StatusClass is Unknown.
-func IdentifyResponseStatusClass(r http.Response) (StatusClass, error) {
+// StatusClass is Unknown.
+func IdentifyResponseStatusClass(r http.Response) StatusClass {
 	return IdentifyStatusClass(r.StatusCode)
 }
 
 // IdentifyStatusClass returns a StatusClass for a given integer status code.
 // For a http.Response object with an unexpected StatusCode, the returned
-// error is non-nil and the StatusClass is Unknown.
-func IdentifyStatusClass(sc int) (StatusClass, error) {
+// StatusClass is Unknown.
+func IdentifyStatusClass(sc int) StatusClass {
 	if sc >= 100 && sc < 200 {
-		return Informational, nil
+		return Informational
 	} else if sc >= 200 && sc < 300 {
-		return Successful, nil
+		return Successful
 	} else if sc >= 300 && sc < 400 {
-		return Redirection, nil
+		return Redirection
 	} else if sc >= 400 && sc < 500 {
-		return ClientError, nil
+		return ClientError
 	} else if sc >= 500 && sc < 600 {
-		return ServerError, nil
+		return ServerError
 	}
 
-	return Unknown, fmt.Errorf("Unexpected status code: %d", sc)
+	return Unknown
 }
